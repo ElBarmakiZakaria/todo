@@ -19,33 +19,35 @@ const Dashboard = () => {
                         </div>
                         <div><button class="add-task-btn"><span>+</span> Add task</button></div>
                     </div>
-                    <div>
-                        <div>Today</div>
-                        <div>
-                            <div></div>
-                            <div>
-                                <div>Attend Nischal's birthday Party</div>
-                                <div>Buy gifts on the way and pick up cake from the bakery. (6 PM | Fresh Elements).....</div>
+                    <div class="tasks-wrapper">
+                        <div class="tasks-per-day-wrapper">
+                            <div class="task-day">Today</div>
+                            <div class="task-card">
+                                <div class="status-circle"></div>
                                 <div>
-                                    <div>Priority: Moderate</div>
-                                    <div>Status: Planned</div>
-                                    <div>Created on: 20/06/23</div>
+                                    <div>Attend Nischal's birthday Party</div>
+                                    <div>Buy gifts on the way and pick up cake from the bakery. (6 PM | Fresh Elements).....</div>
+                                    <div class="bottom-card-section">
+                                        <div>Priority: Moderate</div>
+                                        <div>Status: Planned</div>
+                                        <div>Created on: 20/06/23</div>
+                                    </div>
                                 </div>
+                                <div>...</div>
                             </div>
-                            <div>...</div>
-                        </div>
-                        <div>
-                            <div></div>
-                            <div>
-                                <div>Attend Nischal's birthday Party</div>
-                                <div>Buy gifts on the way and pick up cake from the bakery. (6 PM | Fresh Elements).....</div>
+                            <div class="task-card">
+                                <div class="status-circle"></div>
                                 <div>
-                                    <div>Priority: Moderate</div>
-                                    <div>Status: Planned</div>
-                                    <div>Created on: 20/06/23</div>
+                                    <div>Attend Nischal's birthday Party</div>
+                                    <div>Buy gifts on the way and pick up cake from the bakery. (6 PM | Fresh Elements).....</div>
+                                    <div class="bottom-card-section">
+                                        <div>Priority: Moderate</div>
+                                        <div>Status: Planned</div>
+                                        <div>Created on: 20/06/23</div>
+                                    </div>
                                 </div>
+                                <div>...</div>
                             </div>
-                            <div>...</div>
                         </div>
                     </div>
                 </div>

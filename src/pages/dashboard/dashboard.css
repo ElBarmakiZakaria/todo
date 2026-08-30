@@ -51,10 +51,12 @@
     display: flex;
     gap: 20px;
     height: calc(100vh - 278px);
+    background-color: aqua;
 
 }
 
 .to-do-tasks-wrapper {
+    max-width: 50%;
     background-color: var(--white-card-color);
     display: flex;
     flex-direction: column;
@@ -73,13 +75,13 @@
     background: none;
     border: none;
     gap: 2px;
-    font-size: 16px;
+    font-size: 20px;
     color: var(--primary-color);
 }
 
 .to-do-header-icon {
-    height: 28px;
-    width: 28px;
+    height: 36px;
+    width: 36px;
     background-color: var(--grey-color);
     mask-size: contain;
     mask-repeat: no-repeat;
@@ -94,7 +96,7 @@
     background: none;
     color: var(--grey-color);
     border: none;
-    font-size: 12px;
+    font-size: 16px;
     display: flex;
     align-items: center;
     gap: 6px;
@@ -102,7 +104,49 @@
 
     span {
         color: var(--primary-color);
-        font-size: 16px;
+        font-size: 20px;
         font-weight: bold;
     }
+}
+
+.tasks-wrapper {
+    padding: 5px 24px;
+    height: 100%;
+}
+
+.tasks-per-day-wrapper {
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+}
+
+.task-day {
+    display: flex;
+    justify-content: end;
+    color: var(--grey-color);
+    font-size: 14px;
+}
+
+.task-card {
+    background-color: var(--white-card-color);
+    border: 1px solid var(--third-color);
+    border-radius: 16px;
+    padding: 16px;
+    display: flex;
+    gap: 10px;
+
+}
+
+.status-circle {
+    width: 20px;
+    height: 14px;
+    border-radius: 100%;
+    border: 2px solid var(--primary-color);
+}
+
+.bottom-card-section {
+    display: flex;
+    font-size: 12px;
+    margin-top: 14px;
+    justify-content: space-between;
 }
