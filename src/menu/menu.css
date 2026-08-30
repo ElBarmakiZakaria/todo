@@ -1,0 +1,122 @@
+.menu-section {
+    position: relative;
+    width: 100%;
+    margin-top: 15px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    min-height: calc(100vh - 115px);
+}
+
+.profile-image {   
+    width: 88px;
+    border-radius: 50%;
+    z-index: 1;
+    border: 2px solid var(--secondary-color);
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
+
+    position: absolute;
+    top: 0;
+}
+
+.menu {
+    width: 100%;
+    margin-top: 44px;
+    padding-top: 55px;
+    background-color: var(--primary-color);
+    border-top-right-radius: 10px;
+    
+    flex-grow: 1;
+    
+    display: flex;
+    flex-direction: column;
+}
+
+.name-email {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding-top: 10px;
+    gap: 5px;
+}
+
+.name {
+    color: var(--secondary-color);
+    font-weight: bold;
+    font-size: 20px;
+}
+
+.email {
+    color: var(--secondary-color);
+    font-size: 14px;
+
+    word-break: break-all; 
+    text-align: center;
+    width: 100%;
+    padding: 0 10px;
+}
+
+.menu-ele {
+    margin-top: 15px;
+    padding: 0 30px;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+.menu-link {
+    height: 60px;
+    border-radius: 10px;
+    color: var(--secondary-color);
+    
+    font-size: 20px;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    padding-left: 15px;
+    background: none;
+    border: none;
+    cursor: pointer;
+    width: 100%;
+}
+
+.icon-styling {
+    height: 28px;
+    width: 28px;
+    background-color: var(--secondary-color);
+    mask-size: contain;
+    mask-repeat: no-repeat;
+    mask-position: center;
+    -webkit-mask-size: contain;
+    -webkit-mask-repeat: no-repeat;
+    -webkit-mask-position: center;
+}
+
+
+
+.menu-link:hover {
+
+    background-color: var(--secondary-color);
+    color: var(--primary-color);
+    font-weight: bold;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.07);
+
+
+    .icon-styling {
+        background-color: var(--primary-color);
+    }
+
+}
+
+
+
+.selected {
+    background-color: var(--secondary-color);
+    color: var(--primary-color);
+    font-weight: bold;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.07);
+
+    .icon-styling {
+        background-color: var(--primary-color);
+    }
+}

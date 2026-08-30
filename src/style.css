@@ -19,6 +19,10 @@
 
 }
 
+*, *::before, *::after {
+    box-sizing: border-box;
+}
+
 body {
     background-color: var(--background-color);
     margin: 0;
@@ -26,8 +30,19 @@ body {
 
     font-family: var(--font-family);
 
+    overflow-x: hidden;
+
 
 }
 /* 
 .nav-section {
 } */
+ 
+.menu-body-section {
+    width: 100%;
+    display: flex;
+} 
+
+#menu-section{
+    width: 20%;
+}

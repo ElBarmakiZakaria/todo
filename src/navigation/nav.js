@@ -13,7 +13,7 @@ const Nav = () => {
             </div>
 
             <div >
-                <div >${format(currentDate, "EEEE")}</div>
+                <div class="day" >${format(currentDate, "EEEE")}</div>
                 <div class="date">${format(currentDate, "dd/MM/yyyy")}</div>
             </div>
         </div>`)

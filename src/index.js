@@ -3,6 +3,8 @@ import "./style.css";
 // componenent
 import Nav from './navigation/nav.js';
 
+import Menu from './menu/menu.js'
+
 
 import {priorities, statuses} from './data/enum.js';
 import Project from './data/project.js';
@@ -122,3 +124,6 @@ console.log(JSON.stringify(tasks, null, 2));
 
 const navContainer = document.getElementById("nav-section");
 navContainer.innerHTML = Nav();
+
+const menContainer = document.getElementById("menu-section");
+menContainer.innerHTML = Menu();
