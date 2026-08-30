@@ -1,0 +1,108 @@
+.dashboard-wrapper {
+    display: flex;
+    flex-direction: column;
+
+}
+
+.dashboard-header {
+    display: flex;
+    height: 60px;
+    align-items: top;
+    justify-content: space-between; 
+}
+
+
+
+.welcome-back {
+    font-size: 36px;
+}
+
+
+.add-project-header button {
+    height: 42px;
+    padding: 0 20px;
+    background: none;
+    border: 2px solid var(--primary-color);
+    border-radius: 8px;
+    color: var(--primary-color);
+    font-weight: bold;
+    font-size: 14px;
+    transition: scale .5s, background-color .5s, box-shadow .5s;
+
+    span {
+        font-size: 16px;
+    }
+}
+.add-project-header button:hover {
+    background-color: var(--primary-color);
+    color: var(--secondary-color);
+    scale: 1.03;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.07)
+
+
+}
+
+
+.dashboard-body-wrapper {
+    border: 1px solid var(--third-color);
+    border-radius: 8px;
+    padding: 26px;
+    overflow-y: hidden;
+    display: flex;
+    gap: 20px;
+    height: calc(100vh - 278px);
+
+}
+
+.to-do-tasks-wrapper {
+    background-color: var(--white-card-color);
+    display: flex;
+    flex-direction: column;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.07);
+    border-radius: 8px;
+    padding: 12px;
+}
+
+.to-do-header {
+    display: flex;
+    justify-content: space-between;
+}
+
+.to-do-header-left{
+    display: flex;
+    background: none;
+    border: none;
+    gap: 2px;
+    font-size: 16px;
+    color: var(--primary-color);
+}
+
+.to-do-header-icon {
+    height: 28px;
+    width: 28px;
+    background-color: var(--grey-color);
+    mask-size: contain;
+    mask-repeat: no-repeat;
+    mask-position: center;
+    -webkit-mask-size: contain;
+    -webkit-mask-repeat: no-repeat;
+    -webkit-mask-position: center;
+
+}
+
+.add-task-btn {
+    background: none;
+    color: var(--grey-color);
+    border: none;
+    font-size: 12px;
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    
+
+    span {
+        color: var(--primary-color);
+        font-size: 16px;
+        font-weight: bold;
+    }
+}

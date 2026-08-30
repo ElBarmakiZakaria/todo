@@ -2,9 +2,13 @@ import "./style.css";
 
 // componenent
 import Nav from './navigation/nav.js';
-
 import Menu from './menu/menu.js'
-
+import Dashboard from './pages/dashboard/dashboard.js';
+import MyProjects from './pages/my-projects/myProjects.js';
+import MyTasks from './pages/my-tasks/myTasks.js';
+import VitalTasks from './pages/vital-tasks/vitalTasks.js';
+import Setting from './pages/setting/setting.js';
+import Help from './pages/help/help.js';
 
 import {priorities, statuses} from './data/enum.js';
 import Project from './data/project.js';
@@ -127,3 +131,44 @@ navContainer.innerHTML = Nav();
 
 const menContainer = document.getElementById("menu-section");
 menContainer.innerHTML = Menu();
+
+
+const bodyContainer = document.getElementById("body-section");
+updatePage("dashboard");
+
+function updatePage(page){
+    const selectedBtn = document.getElementById(page);
+    selectedBtn.classList.add("selected");
+
+    if (page === "dashboard"){
+        bodyContainer.innerHTML = Dashboard();
+    } else if (page === "my-projects") {
+        bodyContainer.innerHTML = MyProjects();
+    } else if (page === "my-tasks") {
+        bodyContainer.innerHTML = MyTasks();
+    } else if (page === "vital-tasks") {
+        bodyContainer.innerHTML = VitalTasks();
+    } else if (page === "setting") {
+        bodyContainer.innerHTML = Setting();
+    } else if (page === "help") {
+        bodyContainer.innerHTML = Help();
+    } else {
+        bodyContainer.innerHTML = "<div><h1>Page Not Found</h1></div>"
+    }
+}
+
+
+
+const menubtn = document.getElementById("menu-btn");
+menubtn.addEventListener("click", (e) => {
+    if (e.target.getAttribute("id") !== "menu-btn"){
+        const currentPage = e.target.getAttribute("id");
+        
+        for (const child of menubtn.children){
+            if (child.classList.contains("selected")){
+            child.classList.remove("selected");}
+        }
+        
+        updatePage(currentPage);
+    }
+});

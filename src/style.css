@@ -5,6 +5,8 @@
     --third-color: #A1A3AB;
     --fourth-color: #3ABEFF;
 
+    --white-card-color: #F5F8FF;
+
     --grey-color: #888a91;
 
     --green-color: #05A301;
@@ -45,4 +47,10 @@ body {
 
 #menu-section{
     width: 20%;
+    
+}
+
+#body-section {
+    width: 80%;
+    padding: 59px 75px;
 }
