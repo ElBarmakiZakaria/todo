@@ -172,3 +172,9 @@ menubtn.addEventListener("click", (e) => {
         updatePage(currentPage);
     }
 });
+
+
+const menuCardbtn = document.getElementById("task-card-menu-btn");
+menuCardbtn.addEventListener("click", () => {
+    console.log("this button is clicked!!!!");
+})

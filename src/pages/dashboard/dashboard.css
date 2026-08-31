@@ -51,12 +51,14 @@
     display: flex;
     gap: 20px;
     height: calc(100vh - 278px);
-    background-color: aqua;
 
 }
 
 .to-do-tasks-wrapper {
-    max-width: 50%;
+
+}
+
+.card-wrapper {
     background-color: var(--white-card-color);
     display: flex;
     flex-direction: column;
@@ -138,10 +140,23 @@
 }
 
 .status-circle {
-    width: 20px;
-    height: 14px;
-    border-radius: 100%;
-    border: 2px solid var(--primary-color);
+    width: 15px;
+    height: 15px;
+    border-radius: 50%;
+    flex-shrink: 0;
+    
+}
+
+.status-planned {
+    border: 3px solid var(--primary-color);
+}
+
+.status-completed {
+    border: 3px solid var(--green-color);
+}
+
+.status-ongoing {
+    border: 3px solid var(--fourth-color);
 }
 
 .bottom-card-section {
@@ -149,4 +164,113 @@
     font-size: 12px;
     margin-top: 14px;
     justify-content: space-between;
+}
+
+.task-card-body {
+    padding: 0 10px;
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+}
+
+.task-card-title {
+    font-size: 18px;
+}
+
+.task-card-description {
+    color: #747474;
+    font-size: 14px;
+}
+
+.task-card-priority span {
+    color: var(--fourth-color);
+}
+.task-card-status span {
+    color: var(--fourth-color);
+}
+
+.task-card-creation-date {
+    color: var(--grey-color);
+}
+
+.task-card-menu {
+    display: flex;
+}
+.task-card-menu-btn {
+    background-image: url(../../public/icons/menu-three-dots.svg);
+    width: 20px;
+    border: none;
+    height: 6px;
+    background-repeat: no-repeat;
+    background-size: contain;
+    background-color: var(--white-card-color);
+    cursor: pointer;
+    background-position: center;
+
+}
+
+
+/* right section */
+
+.right-section-wrapper {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+
+}
+
+/* tasks status overview sections */
+
+/* .tasks-status-overview {
+    background-color: var(--white-card-color);
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.07);
+    border-radius: 8px;
+    padding: 12px;
+    height: 30%;
+} */
+
+
+/* project card */
+
+.projects-header-icon {
+    height: 24px;
+    width: 24px;
+    background-color: var(--third-color);
+    mask-size: contain;
+    mask-repeat: no-repeat;
+    mask-position: center;
+    -webkit-mask-size: contain;
+    -webkit-mask-repeat: no-repeat;
+    -webkit-mask-position: center;
+}
+
+
+.projects-header-right {
+    display: flex;
+    background: none;
+    border: none;
+    gap: 8px;
+    font-size: 20px;
+
+    color: var(--primary-color);
+}
+
+
+.projects-wrapper {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+    height: 100%;
+    background-color: var(--white-card-color);
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.07);
+    border-radius: 8px;
+    padding: 12px;
+}
+
+.project-wrapper {
+    padding: 5px 24px;
+    height: 100%;
+    display: flex;
+    gap: 16px;
+    flex-direction: column;
 }
