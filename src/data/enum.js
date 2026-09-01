@@ -1,6 +1,6 @@
 const priorities = {
     low: "Low",
-    medium: "medium",
+    medium: "Medium",
     high: "High",
 }
 

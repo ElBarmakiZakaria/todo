@@ -10,6 +10,8 @@ import VitalTasks from './pages/vital-tasks/vitalTasks.js';
 import Setting from './pages/setting/setting.js';
 import Help from './pages/help/help.js';
 
+import Modal from './component/modal/modal.js';
+
 import {priorities, statuses} from './data/enum.js';
 import Project from './data/project.js';
 import Task from './data/task.js';
@@ -42,8 +44,8 @@ const project1 = new Project(
     "project 1", 
     "this is the description",
     new Date(2026, 10, 11),
-    priorities.low,
-    statuses.planned
+    priorities.high,
+    statuses.ongoing
 );
 
 const project2 = new Project(
@@ -59,9 +61,9 @@ projects = projectManager.addProject([defaultProject, project1, project2]);
 
 const task1 = new Task(
     "task title",
-    "task description",
+    "task description, task description task descriptiontask description task description, task descriptiontask description. task description. task description task description task description task description.",
     new Date(2026, 10, 1),
-    priorities.medium,
+    priorities.low,
     statuses.planned,
     projects[1].id
 );
@@ -79,7 +81,7 @@ const task3 = new Task(
     "task title 3",
     "task description 3",
     new Date(2026, 9, 1),
-    priorities.low,
+    priorities.medium,
     statuses.completed,
     projects[2].id
 );
@@ -88,39 +90,9 @@ tasks = taskManager.addTask([task1, task2])
 
 
 
-console.log("-------Total Projects-----------");
-console.log(JSON.stringify(projects, null, 2));
-console.log(`------------ ${projects[1].title} --------------`);
-console.log(
-    JSON.stringify(tasks.filter(e => e.project === projects[1].id), null, 2)
-);
+tasks = taskManager.addTask([task3, task3, task3])
 
 
-console.log(`------------ ${projects[2].title} --------------`);
-console.log(
-    JSON.stringify(tasks.filter(e => e.project === projects[2].id), null, 2)
-);
-
-tasks = taskManager.addTask([task3])
-
-console.log(`------------ ${projects[2].title} --------------`);
-console.log(
-    JSON.stringify(tasks.filter(e => e.project === projects[2].id), null, 2)
-);
-
-projects = projectManager.deleteProject(project2);
-
-tasks = taskManager.deleteTask(task3);
-
-
-
-
-console.log("------- NEW Total Projects-----------");
-console.log(JSON.stringify(projects, null, 2));
-
-
-console.log("------- NEW Total tast-----------");
-console.log(JSON.stringify(tasks, null, 2));
 
 
 
@@ -141,7 +113,7 @@ function updatePage(page){
     selectedBtn.classList.add("selected");
 
     if (page === "dashboard"){
-        bodyContainer.innerHTML = Dashboard();
+        bodyContainer.innerHTML = Dashboard(taskManager.loadTasks(), projectManager.loadProjects());
     } else if (page === "my-projects") {
         bodyContainer.innerHTML = MyProjects();
     } else if (page === "my-tasks") {
@@ -174,7 +146,36 @@ menubtn.addEventListener("click", (e) => {
 });
 
 
-const menuCardbtn = document.getElementById("task-card-menu-btn");
-menuCardbtn.addEventListener("click", () => {
-    console.log("this button is clicked!!!!");
+// const menuCardbtn = document.getElementById("task-card-menu-btn");
+// menuCardbtn.addEventListener("click", () => {
+//     console.log("this button is clicked!!!!");
+// })
+
+
+
+const addBtn = document.getElementById("add-project");
+addBtn.addEventListener("click", () => {
+    handleModal("project");
 })
+
+
+
+const addTask = document.getElementById("add-task");
+addTask.addEventListener("click", () => {
+    handleModal("task");
+})
+
+
+function handleModal(dataType, ) {
+    document.body.insertAdjacentHTML('beforeend', Modal(dataType, "create", true));
+
+        // 2. Now that the modal is on screen, grab its elements
+    const modalOverlay = document.getElementById("modal-overlay");
+    const closeBtn = document.getElementById("modal-close-btn");
+    const form = document.getElementById("project-form");
+
+        // 3. Handle closing the modal
+    closeBtn.addEventListener("click", () => {
+        modalOverlay.remove(); // Completely removes the HTML from the DOM
+    });
+}

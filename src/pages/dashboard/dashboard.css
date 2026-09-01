@@ -1,7 +1,9 @@
+/* =========================================
+   1. DASHBOARD LAYOUT
+   ========================================= */
 .dashboard-wrapper {
     display: flex;
     flex-direction: column;
-
 }
 
 .dashboard-header {
@@ -11,12 +13,9 @@
     justify-content: space-between; 
 }
 
-
-
 .welcome-back {
     font-size: 36px;
 }
-
 
 .add-project-header button {
     height: 42px;
@@ -28,20 +27,18 @@
     font-weight: bold;
     font-size: 14px;
     transition: scale .5s, background-color .5s, box-shadow .5s;
-
-    span {
-        font-size: 16px;
-    }
 }
+
+.add-project-header button span {
+    font-size: 16px;
+}
+
 .add-project-header button:hover {
     background-color: var(--primary-color);
     color: var(--secondary-color);
     scale: 1.03;
-    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.07)
-
-
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.07);
 }
-
 
 .dashboard-body-wrapper {
     border: 1px solid var(--third-color);
@@ -51,50 +48,51 @@
     display: flex;
     gap: 20px;
     height: calc(100vh - 278px);
-
 }
 
-.to-do-tasks-wrapper {
-
-}
-
-.card-wrapper {
+/* =========================================
+   2. SHARED PANELS (To-Do & Projects Columns)
+   ========================================= */
+.dashboard-panel {
     background-color: var(--white-card-color);
     display: flex;
     flex-direction: column;
     box-shadow: 0 4px 12px rgba(0, 0, 0, 0.07);
     border-radius: 8px;
     padding: 12px;
+    flex: 1; /* Ensures both columns take up equal width */
 }
 
-.to-do-header {
+.panel-header {
     display: flex;
     justify-content: space-between;
+    align-items: center;
+    margin-bottom: 10px;
 }
 
-.to-do-header-left{
+.panel-title {
     display: flex;
     background: none;
     border: none;
-    gap: 2px;
+    gap: 8px;
     font-size: 20px;
     color: var(--primary-color);
+    align-items: center;
 }
 
-.to-do-header-icon {
-    height: 36px;
-    width: 36px;
-    background-color: var(--grey-color);
+.panel-icon {
+    height: 28px;
+    width: 28px;
     mask-size: contain;
     mask-repeat: no-repeat;
     mask-position: center;
     -webkit-mask-size: contain;
     -webkit-mask-repeat: no-repeat;
     -webkit-mask-position: center;
-
 }
 
-.add-task-btn {
+/* Standardized add button inside panels */
+.add-btn {
     background: none;
     color: var(--grey-color);
     border: none;
@@ -102,101 +100,86 @@
     display: flex;
     align-items: center;
     gap: 6px;
-    
-
-    span {
-        color: var(--primary-color);
-        font-size: 20px;
-        font-weight: bold;
-    }
+    cursor: pointer;
+    transition: scale .2s;
 }
 
-.tasks-wrapper {
-    padding: 5px 24px;
+.add-btn span {
+    color: var(--primary-color);
+    font-size: 20px;
+    font-weight: bold;
+}
+
+.add-btn:hover {
+    scale: 1.1;
+}
+
+/* Container for the lists inside panels */
+.panel-list-wrapper {
+    padding: 5px 12px; /* Standardized padding for both lists */
     height: 100%;
-}
-
-.tasks-per-day-wrapper {
     display: flex;
     flex-direction: column;
-    gap: 16px;
+    gap: 20px;
+    overflow-y: auto; /* Allows scrolling inside the list if it gets too long */
+    scrollbar-width: thin;
 }
 
-.task-day {
+.list-subheader {
     display: flex;
-    justify-content: end;
+    justify-content: flex-end;
     color: var(--grey-color);
     font-size: 14px;
 }
 
-.task-card {
-    background-color: var(--white-card-color);
+/* =========================================
+   3. ITEM CARDS (Tasks & Projects)
+   ========================================= */
+.item-card {
     border: 1px solid var(--third-color);
     border-radius: 16px;
     padding: 16px;
     display: flex;
     gap: 10px;
-
 }
 
-.status-circle {
-    width: 15px;
-    height: 15px;
-    border-radius: 50%;
-    flex-shrink: 0;
-    
-}
-
-.status-planned {
-    border: 3px solid var(--primary-color);
-}
-
-.status-completed {
-    border: 3px solid var(--green-color);
-}
-
-.status-ongoing {
-    border: 3px solid var(--fourth-color);
-}
-
-.bottom-card-section {
-    display: flex;
-    font-size: 12px;
-    margin-top: 14px;
-    justify-content: space-between;
-}
-
-.task-card-body {
+.item-card-body {
     padding: 0 10px;
     display: flex;
     flex-direction: column;
     gap: 12px;
+    flex-grow: 1; /* Pushes the menu button to the far right */
 }
 
-.task-card-title {
+.item-card-title {
     font-size: 18px;
 }
 
-.task-card-description {
+.item-card-description {
     color: #747474;
     font-size: 14px;
 }
 
-.task-card-priority span {
-    color: var(--fourth-color);
-}
-.task-card-status span {
-    color: var(--fourth-color);
+.item-card-details {
+    display: flex;
+    font-size: 12px;
+    margin-top: 14px;
+    justify-content: space-between;
+
 }
 
-.task-card-creation-date {
+.flex-newline {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.item-card-date {
     color: var(--grey-color);
 }
 
-.task-card-menu {
-    display: flex;
-}
-.task-card-menu-btn {
+/* Menu Button */
+.item-card-menu-btn {
     background-image: url(../../public/icons/menu-three-dots.svg);
     width: 20px;
     border: none;
@@ -206,71 +189,27 @@
     background-color: var(--white-card-color);
     cursor: pointer;
     background-position: center;
-
+    flex-shrink: 0;
 }
 
-
-/* right section */
-
-.right-section-wrapper {
-    display: flex;
-    flex-direction: column;
-    gap: 20px;
-
+/* =========================================
+   4. UTILITIES & STATUS CIRCLES
+   ========================================= */
+.status-circle {
+    width: 15px;
+    height: 15px;
+    border-radius: 50%;
+    flex-shrink: 0;
 }
 
-/* tasks status overview sections */
+.status-Planned { border: 3px solid var(--primary-color);}
+.status-Completed { border: 3px solid var(--green-color); }
+.status-Ongoing { border: 3px solid var(--fourth-color); }
 
-/* .tasks-status-overview {
-    background-color: var(--white-card-color);
-    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.07);
-    border-radius: 8px;
-    padding: 12px;
-    height: 30%;
-} */
+.Planned { color: var(--primary-color); }
+.Completed { color: var(--green-color); }
+.Ongoing { color: var(--fourth-color); }
 
-
-/* project card */
-
-.projects-header-icon {
-    height: 24px;
-    width: 24px;
-    background-color: var(--third-color);
-    mask-size: contain;
-    mask-repeat: no-repeat;
-    mask-position: center;
-    -webkit-mask-size: contain;
-    -webkit-mask-repeat: no-repeat;
-    -webkit-mask-position: center;
-}
-
-
-.projects-header-right {
-    display: flex;
-    background: none;
-    border: none;
-    gap: 8px;
-    font-size: 20px;
-
-    color: var(--primary-color);
-}
-
-
-.projects-wrapper {
-    display: flex;
-    flex-direction: column;
-    gap: 20px;
-    height: 100%;
-    background-color: var(--white-card-color);
-    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.07);
-    border-radius: 8px;
-    padding: 12px;
-}
-
-.project-wrapper {
-    padding: 5px 24px;
-    height: 100%;
-    display: flex;
-    gap: 16px;
-    flex-direction: column;
-}
+.High { color: var(--primary-color); }
+.Low { color: var(--green-color); }
+.Medium { color: var(--fourth-color); }
