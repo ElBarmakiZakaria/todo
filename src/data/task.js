@@ -5,10 +5,10 @@ class Task {
         this.id = crypto.randomUUID();
         this.title = title;
         this.description = description;
-        this.dueDate = format(dueDate, "yyyy-MM-dd");
+        this.dueDate = dueDate;
         this.priority = priority;
         this.status = status;
-        this.project = project || 'default';        
+        this.project = project || 'Default project';        
         this.creationDate = format(new Date(), "yyyy-MM-dd");
     }
 

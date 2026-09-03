@@ -1,38 +1,38 @@
-import {priorities, statuses} from '../data/enum.js';
-
 class TaskService {
-    constructor () {
-        this.storageKey = "tasks_data";
-    }
+    // 1. Replace the constructor with a static property
+    static storageKey = "tasks_data";
 
-    saveTasks(tasksArray){
+    // 2. Add 'static' to every method
+    static saveTasks(tasksArray) {
         const tasksJSON = JSON.stringify(tasksArray, null, 2);
         localStorage.setItem(this.storageKey, tasksJSON);
     }
 
-    loadTasks() {
+    static loadTasks() {
         const tasksJSON = localStorage.getItem(this.storageKey);
 
         if (tasksJSON) {
+            // Note: Remember our earlier conversation about rehydration! 
+            // If you need class methods like updatePriority(), you will 
+            // still need to map these plain objects back into Task instances here.
             return JSON.parse(tasksJSON);
-        }else {
+        } else {
             return [];
         }
     }
 
-    addTask(task) {
+    static addTask(task) {
         let tasks = this.loadTasks();
-        task.forEach(element => {
-            tasks.push(element);
-        });
         
-
+        tasks.push(task);
+        
+        
         this.saveTasks(tasks);
         return this.loadTasks();
     }
 
-    deleteTask(task) {
-        let tasks = this.loadTasks()
+    static deleteTask(task) {
+        let tasks = this.loadTasks();
         let index = tasks.findIndex(t => t.id === task.id);
 
         if (index !== -1) {
@@ -42,15 +42,6 @@ class TaskService {
         this.saveTasks(tasks);
         return this.loadTasks();
     }
-
-    // updateTask(task) {
-    //     let tasks = this.loadTasks()
-    //     let index = tasks.findIndex(t => t.id === task.id);
-    //     tasks[index].priority = priorities.low;
-        
-    //     this.saveTasks(tasks);
-    //     return this.loadTasks();
-    // }
 }
 
 export default TaskService;

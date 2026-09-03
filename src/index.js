@@ -5,98 +5,33 @@ import Nav from './navigation/nav.js';
 import Menu from './menu/menu.js'
 import Dashboard from './pages/dashboard/dashboard.js';
 import MyProjects from './pages/my-projects/myProjects.js';
-import MyTasks from './pages/my-tasks/myTasks.js';
+import MyTasks, {returnTaskPreview} from './pages/my-tasks/myTasks.js';
 import VitalTasks from './pages/vital-tasks/vitalTasks.js';
 import Setting from './pages/setting/setting.js';
 import Help from './pages/help/help.js';
 
 import Modal from './component/modal/modal.js';
 
-import {priorities, statuses} from './data/enum.js';
-import Project from './data/project.js';
-import Task from './data/task.js';
 
 import TaskService from './services/taskService.js';
 import ProjectService from './services/projectService.js';
+import {addTask, addProject, addDefaultProject, returnTaskById} from './services/storageManager.js';
 
 
-localStorage.clear();
-console.log("All local storage data has been completely erased.");
+// localStorage.clear();
+// console.log("All local storage data has been completely erased.");
 
-const taskManager = new TaskService();
-const projectManager = new ProjectService();
-
-
-
-// I want this to be JSON
-let projects = projectManager.loadProjects();
-let tasks = taskManager.loadTasks();
-
-const defaultProject = new Project(
-    "Default", 
-    "This is a default project",
-    new Date(),
-    priorities.low,
-    statuses.planned
-);
-
-const project1 = new Project(
-    "project 1", 
-    "this is the description",
-    new Date(2026, 10, 11),
-    priorities.high,
-    statuses.ongoing
-);
-
-const project2 = new Project(
-    "project 2", 
-    "this is project 2 the description",
-    new Date(2026, 10, 11),
-    priorities.medium,
-    statuses.completed
-);
-
-projects = projectManager.addProject([defaultProject, project1, project2]);
-
-
-const task1 = new Task(
-    "task title",
-    "task description, task description task descriptiontask description task description, task descriptiontask description. task description. task description task description task description task description.",
-    new Date(2026, 10, 1),
-    priorities.low,
-    statuses.planned,
-    projects[1].id
-);
-
-const task2 = new Task(
-    "task title2",
-    "task description2",
-    new Date(2026, 9, 1),
-    priorities.high,
-    statuses.ongoing,
-    projects[1].id
-);
-
-const task3 = new Task(
-    "task title 3",
-    "task description 3",
-    new Date(2026, 9, 1),
-    priorities.medium,
-    statuses.completed,
-    projects[2].id
-);
-
-tasks = taskManager.addTask([task1, task2])
+// const taskManager = new TaskService();
+// const projectManager = new ProjectService();
 
 
 
-tasks = taskManager.addTask([task3, task3, task3])
+let projects = ProjectService.loadProjects();
+let tasks = TaskService.loadTasks();
+
+projects = addDefaultProject(projects);
 
 
-
-
-
-// -------------------
 
 const navContainer = document.getElementById("nav-section");
 navContainer.innerHTML = Nav();
@@ -113,11 +48,11 @@ function updatePage(page){
     selectedBtn.classList.add("selected");
 
     if (page === "dashboard"){
-        bodyContainer.innerHTML = Dashboard(taskManager.loadTasks(), projectManager.loadProjects());
+        loadDashboard();
     } else if (page === "my-projects") {
         bodyContainer.innerHTML = MyProjects();
     } else if (page === "my-tasks") {
-        bodyContainer.innerHTML = MyTasks();
+        loadMyTasks();
     } else if (page === "vital-tasks") {
         bodyContainer.innerHTML = VitalTasks();
     } else if (page === "setting") {
@@ -146,36 +81,89 @@ menubtn.addEventListener("click", (e) => {
 });
 
 
-// const menuCardbtn = document.getElementById("task-card-menu-btn");
-// menuCardbtn.addEventListener("click", () => {
-//     console.log("this button is clicked!!!!");
-// })
 
 
 
-const addBtn = document.getElementById("add-project");
-addBtn.addEventListener("click", () => {
-    handleModal("project");
-})
 
+function handleModal(dataType, type,  page, data) {
+    document.body.insertAdjacentHTML('beforeend', Modal(dataType, type, true, data));
 
-
-const addTask = document.getElementById("add-task");
-addTask.addEventListener("click", () => {
-    handleModal("task");
-})
-
-
-function handleModal(dataType, ) {
-    document.body.insertAdjacentHTML('beforeend', Modal(dataType, "create", true));
-
-        // 2. Now that the modal is on screen, grab its elements
     const modalOverlay = document.getElementById("modal-overlay");
     const closeBtn = document.getElementById("modal-close-btn");
-    const form = document.getElementById("project-form");
+    const form = document.getElementById(`${dataType}-form`);
 
-        // 3. Handle closing the modal
     closeBtn.addEventListener("click", () => {
         modalOverlay.remove(); // Completely removes the HTML from the DOM
+        updatePage(page);
     });
+
+
+    form.addEventListener("submit", (event) => {
+        event.preventDefault();
+
+        const formData = new FormData(event.target);
+        
+        const formValues = Object.fromEntries(formData.entries());
+        
+        if (dataType === "project") {
+            addProject(formValues);
+            projects = ProjectService.loadProjects();
+        } else { 
+            addTask(formValues);
+            tasks = TaskService.loadTasks();
+        }
+        
+        updatePage(page);
+        modalOverlay.remove();
+    } )
+
+}
+
+function loadDashboard() {
+    bodyContainer.innerHTML = Dashboard(tasks, projects);
+
+    const addProjectBtn = document.getElementById("add-project");
+    addProjectBtn.addEventListener("click", () => {
+        handleModal("project", "create", "dashboard");
+        console.log("project button clicked");
+    })
+
+    const addTaskBtn = document.getElementById("add-task");
+    addTaskBtn.addEventListener("click", () => {
+        handleModal("task", "create", "dashboard");
+    })
+
+}
+
+
+function loadMyTasks() {
+    let showenTask;
+    bodyContainer.innerHTML = MyTasks(tasks);
+    const addTaskBtn = document.getElementById("add-task");
+    addTaskBtn.addEventListener("click", () => {
+        handleModal("task", "create", "my-tasks");
+    })
+
+    const rightSection = document.getElementById("task-overview");
+
+    const leftSection = document.getElementById("tasks-wrapper");
+    
+    leftSection.addEventListener("click", (e) => {
+        if (e.target.getAttribute("id") !== "tasks-wrapper"){
+            const currentTask = e.target.getAttribute("data-id");
+            if (currentTask){
+                showenTask = returnTaskById(currentTask);
+                rightSection.innerHTML = returnTaskPreview(showenTask);
+            }            
+        }
+    })
+
+
+    const editBtn = document.getElementById("edit-task");
+    editBtn.addEventListener("click", () => {
+        handleModal("task", "update", "my-tasks", showenTask);
+        console.log("clicking edit")
+    })
+
+    
 }

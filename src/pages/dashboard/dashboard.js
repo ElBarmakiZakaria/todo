@@ -2,6 +2,10 @@ import "./dashboard.css";
 
 import pendingTaskIcon from '../../public/icons/task-pending.svg';
 import projectsIcon from '../../public/icons/projects-icon.svg';
+import {returnTotalTasksperProject} from '../../services/storageManager.js';
+
+
+
 
 const Dashboard = (tasksList, projectList) => {
 
@@ -24,7 +28,7 @@ const Dashboard = (tasksList, projectList) => {
                             <span class="panel-icon" style="background-color: var(--grey-color); -webkit-mask-image: url(${pendingTaskIcon}); mask-image: url(${pendingTaskIcon});"></span> 
                             To-Do
                         </button>  
-                        <button class="add-btn" id="add-task" data-type="task"><span>+</span> Ad task</button>
+                        <button class="add-btn" id="add-task" data-type="task"><span>+</span> Add task</button>
                     </div>
                     
                     <div class="panel-list-wrapper">
@@ -78,7 +82,7 @@ const Dashboard = (tasksList, projectList) => {
                                         <div class="flex-newline">Priority: <span class="${project.priority}">${project.priority}</span></div>
                                         <div class="flex-newline">Status: <span class="${project.status}">${project.status}</span></div>
                                         <div class="item-card-date flex-newline">Due Date: <span>${project.dueDate}</span></div>
-                                        <div class="flex-newline">Total Tasks: <span>5</span></div>
+                                        <div class="flex-newline">Total Tasks: <span>${returnTotalTasksperProject(project.title)}</span></div>
                                     </div>
                                 </div>
                                 <button class="item-card-menu-btn"></button>

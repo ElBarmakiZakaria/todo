@@ -7,7 +7,7 @@ class Project {
         this.id = crypto.randomUUID();
         this.title = title;
         this.description = description;
-        this.dueDate = format(dueDate, "yyyy-MM-dd");;
+        this.dueDate = dueDate;
         this.priority = priority;
         this.status = status;
     }
