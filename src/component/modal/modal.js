@@ -7,13 +7,13 @@ const Modal = (dataType, type, isOpen = true, data = null) => {
     if (!isOpen) return ``;
 
     // 1. Set the title dynamically (e.g., "Create Task" or "Update Project")
-    const formTitle = `${type === 'create' ? 'Create' : 'Update'} ${dataType === 'project' ? 'Project' : 'Task'}`;
+    const formTitle = `${type === 'create' ? 'Create' : type === 'update' ? "Update" : "Delete"} ${dataType === 'project' ? 'Project' : 'Task'}`;
 
     // 2. Generate the specific fields based on the dataType
     let formFields = '';
     let currentProjects = ProjectService.loadProjects();
     
-    if (dataType === 'task') {
+    if (dataType === 'task' && type !== "delete") {
         formFields = `
             <div class="form-group">
                 <label>Title</label>
@@ -55,7 +55,7 @@ const Modal = (dataType, type, isOpen = true, data = null) => {
             </div>
 
         `;
-    } else if (dataType === 'project') {
+    } else if (dataType === 'project' && type !== "delete") {
         formFields = `
             <div class="form-group">
                 <label>Project Title</label>
@@ -89,6 +89,12 @@ const Modal = (dataType, type, isOpen = true, data = null) => {
         `;
     }
 
+    if (type === "delete"){
+        formFields =  `
+            <div>Are you sure you want to delete this ${dataType}</div>
+        `
+    }
+
     // 3. Wrap the fields inside the final modal structure
     return `
         <div class="modal-overlay form-container" id="modal-overlay"> 
@@ -100,8 +106,9 @@ const Modal = (dataType, type, isOpen = true, data = null) => {
                 
                 <form id="${dataType}-form">
                     ${formFields}
+                    ${type === 'update' && data ? `<input type="hidden" name="id" value="${data.id}">` : ''}
                     <button type="submit" style="margin-top: 15px;">
-                        ${type === 'create' ? 'Create' : 'Save Changes'}
+                        ${type === 'create' ? 'Create' : type === 'delete' ? 'Delete' : 'Save Changes'}
                     </button>
                 </form>
             </div>

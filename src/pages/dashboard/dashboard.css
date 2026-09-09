@@ -158,6 +158,9 @@
 .item-card-description {
     color: #747474;
     font-size: 14px;
+    height: fit-content;
+    max-height: 50px;
+    overflow: hidden;
 }
 
 .item-card-details {

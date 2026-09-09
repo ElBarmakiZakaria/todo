@@ -32,6 +32,8 @@ class TaskService {
     }
 
     static deleteTask(task) {
+        
+        
         let tasks = this.loadTasks();
         let index = tasks.findIndex(t => t.id === task.id);
 
@@ -41,6 +43,19 @@ class TaskService {
 
         this.saveTasks(tasks);
         return this.loadTasks();
+    }
+
+    static updateTask(updatedTaskData) {
+        let tasks = this.loadTasks();
+        
+        let index = tasks.findIndex(t => String(t.id) === String(updatedTaskData.id));
+
+        if (index !== -1) {
+            tasks[index] = { ...tasks[index], ...updatedTaskData };
+        }
+
+        this.saveTasks(tasks);
+        // return this.loadTasks();
     }
 }
 

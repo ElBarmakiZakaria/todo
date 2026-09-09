@@ -52,7 +52,8 @@
     background-position: center;
     background-color: var(--primary-color);
     border: none;
-    border-radius: 8px;
+    border-top-right-radius: 8px;
+    border-bottom-right-radius: 8px;
 }
 
 .search-input:focus {

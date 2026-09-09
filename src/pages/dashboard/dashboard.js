@@ -2,20 +2,21 @@ import "./dashboard.css";
 
 import pendingTaskIcon from '../../public/icons/task-pending.svg';
 import projectsIcon from '../../public/icons/projects-icon.svg';
-import {returnTotalTasksperProject} from '../../services/storageManager.js';
+import {returnTotalTasksperProject, returnTasks, returnProjects} from '../../services/storageManager.js';
 
 
 
 
-const Dashboard = (tasksList, projectList) => {
-
+const Dashboard = () => {
+    const tasksList = returnTasks();
+    const projectList = returnProjects();
 
 
     return (
         `<div class="dashboard-wrapper">
             <div></div>
             <div class="dashboard-header">
-                <div class="welcome-back">Welcome Back, Sundar &#128075;</div>
+                <div class="welcome-back">Welcome Back, Zack &#128075;</div>
                 <div class="add-project-header"><button id="add-project" data-type="project"><span>+</span> Add Project</button></div>
             </div>
             
@@ -98,6 +99,20 @@ const Dashboard = (tasksList, projectList) => {
             </div>
         </div>`
     );
+}
+
+
+export function initMyDashboard(handleModalCallback) {
+
+    const addProjectBtn = document.getElementById("add-project");
+    addProjectBtn.addEventListener("click", () => {
+        handleModalCallback("project", "create", "dashboard");
+    })
+
+    const addTaskBtn = document.getElementById("add-task");
+    addTaskBtn.addEventListener("click", () => {
+        handleModalCallback("task", "create", "dashboard");
+    })
 }
 
 export default Dashboard;

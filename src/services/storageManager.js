@@ -32,9 +32,8 @@ export function addProject(project) {
     ProjectService.addProject(projectInfo);
 }
 
-export function addDefaultProject(projects) {
-    if (projects.length === 0){
-
+export function addDefaultProject() {
+    if (returnProjects().length === 0){
         addProject(
             { 
                 title: "Default project",
@@ -52,8 +51,6 @@ export function returnTotalTasksperProject(project){
     
     const tasks = TaskService.loadTasks();
 
-
-
     const count = tasks.filter(e => e.project === project).length;
     return count;
 }
@@ -63,4 +60,26 @@ export function returnTaskById(id) {
     const tasks = TaskService.loadTasks();
     const task = tasks.filter(e => e.id === id);
     return task[0];
+}
+
+export function returnTasks() {
+    return TaskService.loadTasks();
+}
+
+
+export function returnProjects() {
+    return ProjectService.loadProjects();
+}
+
+
+export function updateProject() {
+    return;
+}
+
+export function updateTask(newTask) {
+    TaskService.updateTask(newTask);
+}
+
+export function deleteTask(task) {
+    TaskService.deleteTask(task);
 }
