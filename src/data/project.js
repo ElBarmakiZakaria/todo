@@ -10,6 +10,7 @@ class Project {
         this.dueDate = dueDate;
         this.priority = priority;
         this.status = status;
+        this.creationDate = format(new Date(), "yyyy-MM-dd");
     }
 
     updatePriority(newPriority) {

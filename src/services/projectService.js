@@ -4,17 +4,15 @@ class ProjectService {
 
     // 2. Add 'static' to all methods
     static saveProjects(projectsArray) {
-        const projectssJSON = JSON.stringify(projectsArray, null, 2);
-        localStorage.setItem(this.storageKey, projectssJSON);
+        const projectsJSON = JSON.stringify(projectsArray, null, 2);
+        localStorage.setItem(this.storageKey, projectsJSON);
     }
 
     static loadProjects() {
-        const projectssJSON = localStorage.getItem(this.storageKey);
+        const projectsJSON = localStorage.getItem(this.storageKey);
 
-        if (projectssJSON) {
-            // Rehydration reminder: If your Project class has custom methods,
-            // you will need to map these parsed objects back into Project instances here.
-            return JSON.parse(projectssJSON);
+        if (projectsJSON) {
+            return JSON.parse(projectsJSON);
         } else {
             return [];
         }
@@ -40,6 +38,18 @@ class ProjectService {
 
         this.saveProjects(projects);
         return this.loadProjects();
+    }
+
+    static updateProject(updatedProjectData) {
+        let projects = this.loadProjects();
+
+        let index = projects.findIndex(p => String(p.id) === String(updatedProjectData.id));
+
+        if (index !== -1) {
+            projects[index] = { ...projects[index], ...updatedProjectData};
+        }
+
+        this.saveProjects(projects);
     }
 }
 

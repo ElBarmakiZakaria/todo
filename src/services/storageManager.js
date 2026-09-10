@@ -62,6 +62,22 @@ export function returnTaskById(id) {
     return task[0];
 }
 
+export function returnProjectById(id) {
+    const projects = ProjectService.loadProjects();
+    const project = projects.filter(e => e.id === id);
+    return project[0];
+}
+
+export function returnTasksByProject(project) {
+    const tasks = TaskService.loadTasks();
+
+    const filteredTasks = tasks.filter(e => e.project === project);
+
+    return filteredTasks;
+
+}
+
+
 export function returnTasks() {
     return TaskService.loadTasks();
 }
@@ -72,8 +88,12 @@ export function returnProjects() {
 }
 
 
-export function updateProject() {
-    return;
+export function updateProject(newProject) {
+    ProjectService.updateProject(newProject);
+}
+
+export function deleteProject(project) {
+    ProjectService.deleteProject(project);
 }
 
 export function updateTask(newTask) {

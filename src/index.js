@@ -4,7 +4,7 @@ import "./style.css";
 import Nav from './navigation/nav.js';
 import Menu from './menu/menu.js'
 import Dashboard, {initMyDashboard} from './pages/dashboard/dashboard.js';
-import MyProjects from './pages/my-projects/myProjects.js';
+import MyProjects, {initMyProjects} from './pages/my-projects/myProjects.js';
 import MyTasks, {initMyTasks} from './pages/my-tasks/myTasks.js';
 import VitalTasks from './pages/vital-tasks/vitalTasks.js';
 import Setting from './pages/setting/setting.js';
@@ -15,7 +15,7 @@ import Modal from './component/modal/modal.js';
 
 import TaskService from './services/taskService.js';
 import ProjectService from './services/projectService.js';
-import {addTask, addProject, addDefaultProject, returnTaskById, updateTask, deleteTask} from './services/storageManager.js';
+import {addTask, addProject, addDefaultProject, returnTaskById, updateTask, deleteTask, updateProject, deleteProject} from './services/storageManager.js';
 
 
 // localStorage.clear();
@@ -25,11 +25,6 @@ import {addTask, addProject, addDefaultProject, returnTaskById, updateTask, dele
 // const projectManager = new ProjectService();
 
 
-
-let projects = ProjectService.loadProjects();
-let tasks = TaskService.loadTasks();
-
-projects = addDefaultProject();
 
 
 
@@ -50,7 +45,7 @@ function updatePage(page){
     if (page === "dashboard"){
         loadDashboard();
     } else if (page === "my-projects") {
-        bodyContainer.innerHTML = MyProjects();
+        loadMyProjects();
     } else if (page === "my-tasks") {
         loadMyTasks();
     } else if (page === "vital-tasks") {
@@ -93,7 +88,7 @@ function handleModal(dataType, type,  page, data) {
     const form = document.getElementById(`${dataType}-form`);
 
     closeBtn.addEventListener("click", () => {
-        modalOverlay.remove(); // Completely removes the HTML from the DOM
+        modalOverlay.remove();
         updatePage(page);
     });
 
@@ -143,4 +138,10 @@ function loadMyTasks() {
     bodyContainer.innerHTML = MyTasks();
     
     initMyTasks(handleModal);
+}
+
+function loadMyProjects() {
+    bodyContainer.innerHTML = MyProjects();
+
+    initMyProjects(handleModal);
 }
