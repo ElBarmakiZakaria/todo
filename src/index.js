@@ -25,7 +25,7 @@ import {addTask, addProject, addDefaultProject, returnTaskById, updateTask, dele
 // const projectManager = new ProjectService();
 
 
-
+addDefaultProject();
 
 
 const navContainer = document.getElementById("nav-section");

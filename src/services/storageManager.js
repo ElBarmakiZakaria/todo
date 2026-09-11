@@ -44,7 +44,6 @@ export function addDefaultProject() {
             });
     }
 
-    return ProjectService.loadProjects();
 }
 
 export function returnTotalTasksperProject(project){
