@@ -97,20 +97,23 @@ const MyTasks = () => {
 
     return (
             `<div class="dashboard-wrapper">
-                <div></div>
-                <div class="Filters">
-                    <div>Filter By</div>
-                    <div>
-                        <label>Projects</label>
-                        <select class="" id="project-filter" name="projects" default="all">
-                            <option value="all">All</option>
-                            ${currentProjects.map(project => {
-                                return `<option value="${project.title}" >${project.title}</option>`
-                            }).join('')}
-                        </select>
+                <div class="filters">
+                    <div>Filter By:</div>
+
+                    <div class="filter-bottom">
+                        <div class="project-filter">
+                            <label>Projects</label>
+                            <select class="project-select" id="project-filter" name="projects" default="all">
+                                <option value="all">All</option>
+                                ${currentProjects.map(project => {
+                                    return `<option value="${project.title}" >${project.title}</option>`
+                                }).join('')}
+                            </select>
+                        </div>
+                        <div class="filter-btn">
+                            <button id="filter-Btn" class="overview-primary">Filter</button>
+                        </div>
                     </div>
-                    <div><button id="filter-Btn">Filter</button></div>
-                    
                     
                 </div>
 

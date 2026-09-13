@@ -93,6 +93,15 @@ export function updateProject(newProject) {
 
 export function deleteProject(project) {
     ProjectService.deleteProject(project);
+
+    // const totalTask = returnTotalTasksperProject(project.title);
+    const totalTask = returnTasksByProject(project.title);
+    if (totalTask) {
+        totalTask.forEach(element => {
+            deleteTask(element);
+        });
+    }
+
 }
 
 export function updateTask(newTask) {

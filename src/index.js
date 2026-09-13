@@ -6,23 +6,13 @@ import Menu from './menu/menu.js'
 import Dashboard, {initMyDashboard} from './pages/dashboard/dashboard.js';
 import MyProjects, {initMyProjects} from './pages/my-projects/myProjects.js';
 import MyTasks, {initMyTasks} from './pages/my-tasks/myTasks.js';
-import VitalTasks from './pages/vital-tasks/vitalTasks.js';
-import Setting from './pages/setting/setting.js';
-import Help from './pages/help/help.js';
 
 import Modal from './component/modal/modal.js';
 
 
-import TaskService from './services/taskService.js';
-import ProjectService from './services/projectService.js';
-import {addTask, addProject, addDefaultProject, returnTaskById, updateTask, deleteTask, updateProject, deleteProject} from './services/storageManager.js';
+import {addTask, addProject, addDefaultProject, updateTask, deleteTask, updateProject, deleteProject} from './services/storageManager.js';
 
 
-// localStorage.clear();
-// console.log("All local storage data has been completely erased.");
-
-// const taskManager = new TaskService();
-// const projectManager = new ProjectService();
 
 
 addDefaultProject();
@@ -48,12 +38,6 @@ function updatePage(page){
         loadMyProjects();
     } else if (page === "my-tasks") {
         loadMyTasks();
-    } else if (page === "vital-tasks") {
-        bodyContainer.innerHTML = VitalTasks();
-    } else if (page === "setting") {
-        bodyContainer.innerHTML = Setting();
-    } else if (page === "help") {
-        bodyContainer.innerHTML = Help();
     } else {
         bodyContainer.innerHTML = "<div><h1>Page Not Found</h1></div>"
     }

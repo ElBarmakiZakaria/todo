@@ -75,9 +75,33 @@
     font-size: 12px;
 }
 
+.project-filter {
+    display: flex;
+    gap: 16px;
+    color: var(--grey-color-v2);
+    font-size: 14px;
+    align-items: center;
+}
+
+.project-select {
+    height: 24px;
+    border-radius: 2px;
+    border: 1px solid var(--grey-color);
+    padding: 0 8px;
+    background-color: white;
+}
 
 
+.filter-btn {
+    display: flex;
+    justify-content: end;
 
+}
+.filter-bottom {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 8px;
+}
 
 .span {
     font-weight: bold;

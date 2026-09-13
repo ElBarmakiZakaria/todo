@@ -30,6 +30,7 @@
     
     display: flex;
     flex-direction: column;
+    justify-content: space-between;
 }
 
 .name-email {
@@ -121,4 +122,10 @@
     .icon-styling {
         background-color: var(--primary-color);
     }
+}
+
+.credit-seciton {
+    display: flex;
+    justify-content: center;
+    margin-bottom: 70px;
 }
